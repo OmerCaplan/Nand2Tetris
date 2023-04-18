@@ -1,0 +1,25 @@
+CHIP Or16Way {      // helper chip - for checking zr
+    IN a[16];
+
+    OUT out;
+
+    PARTS:
+        Or (a = a[0], b = a[1], out = out01);
+        Or (a = a[2], b = a[3], out = out23);
+        Or (a = a[4], b = a[5], out = out45);
+        Or (a = a[6], b = a[7], out = out67);
+        Or (a = a[8], b = a[9], out = out89);
+        Or (a = a[10], b = a[11], out = out1011);
+        Or (a = a[12], b = a[13], out = out1213);
+        Or (a = a[14], b = a[15], out = out1415);
+
+        Or (a = out01, b = out23, out = out03);
+        Or (a = out45, b = out67, out = out47);
+        Or (a = out89, b = out1011, out = out811);
+        Or (a = out1213, b = out1415, out = out1215);
+
+        Or (a = out03, b = out47, out = out07);
+        Or (a = out811, b = out1215, out = out815);
+
+        Or (a = out07, b = out815, out = out);
+}
